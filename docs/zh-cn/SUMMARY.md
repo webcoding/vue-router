@@ -1,7 +1,7 @@
-# vue-router 2
-<!--email_off-->
-> 注意: vue-router@2.x 只适用于 Vue 2.x。0.7.x 版本的文档请[移步这里](https://github.com/vuejs/vue-router/tree/1.0/docs/zh-cn)。
-<!--/email_off-->
+# vue-router
+
+> 注意：对于 TypeScript 用户来说，vue-router@3.0+ 依赖 vue@2.5+，反之亦然。
+
 **[版本说明](https://github.com/vuejs/vue-router/releases)**
 
 - [安装](installation.md)
@@ -12,7 +12,7 @@
   - [编程式导航](essentials/navigation.md)
   - [命名路由](essentials/named-routes.md)
   - [命名视图](essentials/named-views.md)
-  - [重定向 和 别名](essentials/redirect-and-alias.md)
+  - [重定向和别名](essentials/redirect-and-alias.md)
   - [向路由组件传递 props](essentials/passing-props.md)
   - [HTML5 History 模式](essentials/history-mode.md)
 - 进阶
@@ -38,4 +38,4 @@
   - [路由信息对象](api/route-object.md)
   - [对组件注入](api/component-injections.md)
   - [router-link](api/router-link.md)
-  - [router-view](api/router-view.md))
+  - [router-view](api/router-view.md)

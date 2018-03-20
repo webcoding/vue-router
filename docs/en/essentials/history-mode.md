@@ -32,6 +32,8 @@ Not to worry: To fix the issue, all you need to do is add a simple catch-all fal
 </IfModule>
 ```
 
+Instead of `mod_rewrite`, you could also use [`FallbackResource`](https://httpd.apache.org/docs/2.2/mod/mod_dir.html#fallbackresource).
+
 #### nginx
 
 ```nginx
@@ -80,11 +82,11 @@ For Node.js/Express, consider using [connect-history-api-fallback middleware](ht
     <rewrite>
       <rules>
         <rule name="Handle History Mode and custom 404/500" stopProcessing="true">
-            <match url="(.*)" />
-            <conditions logicalGrouping="MatchAll">
-              <add input="{REQUEST_FILENAME}" matchType="IsFile" negate="true" />
-              <add input="{REQUEST_FILENAME}" matchType="IsDirectory" negate="true" />
-            </conditions>
+          <match url="(.*)" />
+          <conditions logicalGrouping="MatchAll">
+            <add input="{REQUEST_FILENAME}" matchType="IsFile" negate="true" />
+            <add input="{REQUEST_FILENAME}" matchType="IsDirectory" negate="true" />
+          </conditions>
           <action type="Rewrite" url="/" />
         </rule>
       </rules>

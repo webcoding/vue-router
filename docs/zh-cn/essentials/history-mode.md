@@ -32,6 +32,8 @@ const router = new VueRouter({
 </IfModule>
 ```
 
+除了 `mod_rewrite`，你也可以使用 [`FallbackResource`](https://httpd.apache.org/docs/2.2/mod/mod_dir.html#fallbackresource)。
+
 #### nginx
 
 ```nginx
@@ -50,7 +52,7 @@ const httpPort = 80
 http.createServer((req, res) => {
   fs.readFile('index.htm', 'utf-8', (err, content) => {
     if (err) {
-      console.log('We cannot open 'index.htm' file.')
+      console.log('We cannot open "index.htm" file.')
     }
 
     res.writeHead(200, {
@@ -80,11 +82,11 @@ http.createServer((req, res) => {
     <rewrite>
       <rules>
         <rule name="Handle History Mode and custom 404/500" stopProcessing="true">
-            <match url="(.*)" />
-            <conditions logicalGrouping="MatchAll">
-              <add input="{REQUEST_FILENAME}" matchType="IsFile" negate="true" />
-              <add input="{REQUEST_FILENAME}" matchType="IsDirectory" negate="true" />
-            </conditions>
+          <match url="(.*)" />
+          <conditions logicalGrouping="MatchAll">
+            <add input="{REQUEST_FILENAME}" matchType="IsFile" negate="true" />
+            <add input="{REQUEST_FILENAME}" matchType="IsDirectory" negate="true" />
+          </conditions>
           <action type="Rewrite" url="/" />
         </rule>
       </rules>
@@ -99,6 +101,24 @@ http.createServer((req, res) => {
 rewrite {
     regexp .*
     to {path} /
+}
+```
+
+#### Firebase 主机
+
+在你的 `firebase.json` 中加入：
+
+```
+{
+  "hosting": {
+    "public": "dist",
+    "rewrites": [
+      {
+        "source": "**",
+        "destination": "/index.html"
+      }
+    ]
+  }
 }
 ```
 

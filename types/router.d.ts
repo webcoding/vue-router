@@ -1,5 +1,4 @@
-import Vue = require("vue");
-import { ComponentOptions, PluginFunction, AsyncComponent } from "vue";
+import Vue, { ComponentOptions, PluginFunction, AsyncComponent } from "vue";
 
 type Component = ComponentOptions<Vue> | typeof Vue | AsyncComponent;
 type Dictionary<T> = { [key: string]: T };
@@ -13,7 +12,7 @@ export type NavigationGuard = (
   next: (to?: RawLocation | false | ((vm: Vue) => any) | void) => void
 ) => any
 
-declare class VueRouter {
+export declare class VueRouter {
   constructor (options?: RouterOptions);
 
   app: Vue;
@@ -108,7 +107,7 @@ export interface Location {
   name?: string;
   path?: string;
   hash?: string;
-  query?: Dictionary<string>;
+  query?: Dictionary<string | string[]>;
   params?: Dictionary<string>;
   append?: boolean;
   replace?: boolean;
@@ -118,7 +117,7 @@ export interface Route {
   path: string;
   name?: string;
   hash: string;
-  query: Dictionary<string>;
+  query: Dictionary<string | string[]>;
   params: Dictionary<string>;
   fullPath: string;
   matched: RouteRecord[];

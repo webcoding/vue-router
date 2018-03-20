@@ -43,24 +43,24 @@ location / {
 #### Native Node.js
 
 ```js
-const http = require("http")
-const fs = require("fs")
+const http = require('http')
+const fs = require('fs')
 const httpPort = 80
 
 http.createServer((req, res) => {
-  fs.readFile("index.htm", "utf-8", (err, content) => {
+  fs.readFile('index.htm', 'utf-8', (err, content) => {
     if (err) {
       console.log('We cannot open "index.htm" file.')
     }
 
     res.writeHead(200, {
-      "Content-Type": "text/html; charset=utf-8"
+      'Content-Type': 'text/html; charset=utf-8'
     })
 
     res.end(content)
   })
 }).listen(httpPort, () => {
-  console.log("Server listening on: http://localhost:%s", httpPort)
+  console.log('Server listening on: http://localhost:%s', httpPort)
 })
 ```
 
@@ -80,11 +80,11 @@ Node.js/Express では [connect-history-api-fallback middleware](https://github.
     <rewrite>
       <rules>
         <rule name="Handle History Mode and custom 404/500" stopProcessing="true">
-            <match url="(.*)" />
-            <conditions logicalGrouping="MatchAll">
-              <add input="{REQUEST_FILENAME}" matchType="IsFile" negate="true" />
-              <add input="{REQUEST_FILENAME}" matchType="IsDirectory" negate="true" />
-            </conditions>
+          <match url="(.*)" />
+          <conditions logicalGrouping="MatchAll">
+            <add input="{REQUEST_FILENAME}" matchType="IsFile" negate="true" />
+            <add input="{REQUEST_FILENAME}" matchType="IsDirectory" negate="true" />
+          </conditions>
           <action type="Rewrite" url="/" />
         </rule>
       </rules>
@@ -99,6 +99,24 @@ Node.js/Express では [connect-history-api-fallback middleware](https://github.
 rewrite {
     regexp .*
     to {path} /
+}
+```
+
+#### Firebase のホスティング
+
+以下を `firebase.json` に追加します:
+
+```
+{
+  "hosting": {
+    "public": "dist",
+    "rewrites": [
+      {
+        "source": "**",
+        "destination": "/index.html"
+      }
+    ]
+  }
 }
 ```
 
