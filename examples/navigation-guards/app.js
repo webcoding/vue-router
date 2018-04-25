@@ -8,7 +8,7 @@ const Foo = { template: '<div>foo</div>' }
 const Bar = { template: '<div>bar</div>' }
 
 /**
- * Signatre of all route guards:
+ * Signature of all route guards:
  * @param {Route} to
  * @param {Route} from
  * @param {Function} next
@@ -33,7 +33,7 @@ const Baz = {
   },
   template: `
     <div>
-      <p>baz ({{ saved ? 'saved' : 'not saved' }})<p>
+      <p>baz ({{ saved ? 'saved' : 'not saved' }})</p>
       <button @click="saved = true">save</button>
     </div>
   `,
